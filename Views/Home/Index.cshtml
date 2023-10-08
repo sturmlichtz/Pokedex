@@ -1,0 +1,27 @@
+﻿@model List<Pokedex.Models.DTO.Pokemon>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>All Pokémon</h1>
+
+<ul>
+    @foreach (var pokemon in Model)
+    {
+        <li>
+            <img src="@pokemon.ImageUrl" alt="@pokemon.Name" />
+            <span>@pokemon.Name</span>
+        </li>
+    }
+</ul>
+
+<div>
+    @if (Model.Count >= 20)
+    {
+        <a href="@Url.Action("Index", new { page = Model.Count / 20 + 1 })">Next</a>
+    }
+    @if (Model.Count > 20)
+    {
+        <a href="@Url.Action("Index", new { page = Model.Count / 20 })">Previous</a>
+    }
+</div>
